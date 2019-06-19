@@ -17,11 +17,14 @@ public class CadastrarFesta extends HttpServlet {
 	public boolean validarDados(String horaInicio, String horaTermino) {
 		boolean resultado = true;
 		
-		float inicio = Float.parseFloat(horaInicio.substring(0,1) + '.' + horaInicio.substring(4,5) );
-		float termino = Float.parseFloat(horaTermino.substring(0,1) + '.' + horaTermino.substring(4,5) );
+		int inicio = Integer.parseInt(horaInicio.substring(0,2)  );
+		int termino = Integer.parseInt(horaTermino.substring(0,2) );
 		
 		if(termino < inicio) {
-			resultado = false;
+		    if(inicio > 15 && inicio < 23)
+		        return resultado;
+		    else
+		        resultado = false;
 		}
 		
 		return resultado;
@@ -42,7 +45,7 @@ public class CadastrarFesta extends HttpServlet {
 		Festa party = new Festa(cliente, aniversariante, tema, data, horaInicio, horaTermino);
 		
 		if(validarDados(horaInicio, horaTermino)) {
-			RequestDispatcher desp = request.getRequestDispatcher("confirmacao.jsp");
+			RequestDispatcher desp = request.getRequestDispatcher("cadastrar.jsp");
 			desp.forward(request, response);
 		}else {
 			request.setAttribute("festa", party);

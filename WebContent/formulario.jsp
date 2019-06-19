@@ -12,25 +12,32 @@
 
 	<h1>Cadastro de Festa</h1>
 
-
+	<%	Festa festa = (Festa)request.getAttribute("festa");
+		boolean falha = false; 
+	%>
 
 	<form method="post" action="CadastrarFesta">
 		<fieldset>
 			<legend>Dados da festa para ser cadastrada</legend>
 
+			<%
+				if (festa != null) 
+					falha = true;
+				else if(festa == null)
+					festa = new Festa("", "", "", "", "", "");
+				%>
 			<p>
-				<label for="cliente">Cliente: </label> <input type="text"
-					id="cliente" name="cliente" value="">
+				<label for="cliente">Cliente: </label> <input
+					type="text" id="cliente" name="cliente" value="<%=festa.getCliente() %>">
 			</p>
-
 			<p>
 				<label for="aniversariante">Aniversariante: </label> <input
-					type="aniversariante" id="aniversariante" name="aniversariante">
+					type="text" id="aniversariante" name="aniversariante" value="<%=festa.getAniversariante() %>">
 			</p>
 
 			<p>
-				<label for="tema">Tema: </label> <input type="tema" id="tema"
-					list="temas" name="tema">
+				<label for="tema">Tema: </label> <input type="text" id="tema"
+					list="temas" name="tema" value="<%=festa.getTema() %>">
 			</p>
 
 			<datalist id="temas">
@@ -41,17 +48,19 @@
 
 			<p>
 				<label for="data">Data: </label> <input type="date" id="data"
-					name="data">
+					name="data" value="<%=festa.getData() %>">
 			</p>
-			
+			<%if(falha == true) {%>
+				<p><font color="red">A hora de término não pode ser menor que a hora de início!!</font>
+				<%} %>
 			<p>
 				<label for="horaInicio">Hora Início: </label> <input type="time"
-					id="horaInicio" name="horaInicio">
+					id="horaInicio" name="horaInicio" value="<%=festa.getHoraInicio() %>">
 			</p>
 
 			<p>
 				<label for="horaTermino">Hora Término: </label> <input type="time"
-					id="horaTermino" name="horaTermino">
+					id="horaTermino" name="horaTermino" value="<%=festa.getHoraTermino() %>">
 			</p>
 
 			<p>
