@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Festa;
 
-@WebServlet("/CadastrarFesta")
-public class CadastrarFesta extends HttpServlet {
+@WebServlet("/Cadastrar")
+public class Cadastrar extends HttpServlet {
 
     public boolean validarDados(String horaInicio, String horaTermino) {
         boolean resultado = true;
@@ -52,7 +52,7 @@ public class CadastrarFesta extends HttpServlet {
         Festa party = new Festa(cliente, aniversariante, tema, data, horaInicio, horaTermino);
 
         if (validarDados(horaInicio, horaTermino)) {
-            RequestDispatcher desp = request.getRequestDispatcher("cadastrar.jsp");
+            RequestDispatcher desp = request.getRequestDispatcher("confirmacao.jsp");
             desp.forward(request, response);
         } else {
             request.setAttribute("festa", party);

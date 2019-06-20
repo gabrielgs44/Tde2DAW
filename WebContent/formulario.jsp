@@ -16,7 +16,7 @@
 		boolean falha = false; 
 	%>
 
-	<form method="post" action="CadastrarFesta">
+	<form method="post" action="Cadastrar">
 		<fieldset>
 			<legend>Dados da festa para ser cadastrada</legend>
 
@@ -51,7 +51,7 @@
 					name="data" value="<%=festa.getData() %>">
 			</p>
 			<%if(falha == true) {%>
-				<p><font color="red">A hora de término não pode ser menor que a hora de início!!</font>
+				<p style="background-color: red;"><font color="white"><b>A hora de término não pode ser menor que a hora de início!!</b></font></p>
 				<%} %>
 			<p>
 				<label for="horaInicio">Hora Início: </label> <input type="time"
